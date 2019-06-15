@@ -10,13 +10,12 @@ class Client private constructor() {
 
         private val log = LoggerFactory.getLogger(Client::class.java.name)
 
-        private const val serialVersionUID = 1L
-
         @JvmStatic
+        @Suppress("UNCHECKED_CAST")
         fun main(args: Array<String>) {
-            val remote = Naming.lookup("//localhost:9999/Server") as RemoteInterface<String>
+            val remote = Naming.lookup("//localhost:9999/Server") as? RemoteInterface<String>
 
-            log.info(remote.message())
+            log.info(remote?.message())
         }
     }
 }
